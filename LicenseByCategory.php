@@ -26,10 +26,12 @@ $wgHooks['BeforePageDisplay'][] = 'weMultiLicenseHeader';
 function weCategoryLinks( &$out, $categories, &$links ) {
 	global $weLicense;
 	$weLicense = 'CC-BY-SA';
-	if (array_key_exists('CC-BY', $categories)) {
+	if ( array_key_exists( 'CC-BY', $categories ) ) {
 		$weLicense = 'CC-BY';
-	} elseif (array_key_exists('CC0', $categories)) {
+	} elseif ( array_key_exists('CC0', $categories ) ) {
 		$weLicense = 'CC0';
+	} elseif ( array_key_exists( 'Public_Domain', $categories ) ) {
+		$weLicense = 'PD';
 	}
 	return true;
 }
