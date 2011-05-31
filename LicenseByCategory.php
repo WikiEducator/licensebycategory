@@ -41,7 +41,7 @@ function weMultiLicense( &$templateEngine, &$template ) {
 	$weCopyrights = array(
 		'CC-BY' => 'Content is available under <a rel="license" href="http://creativecommons.org/licenses/by/3.0" class="external" title="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>.',
 		'CC0' => 'Content is available under a <a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/" class="external" title="http://creativecommons.org/publicdomain/zero/1.0/">CC0 Public Domain Dedication</a>.',
-		'PD' => 'Content has been <a rel="license" href="http://WikiEducator.org/WikiEducator:Public_Domain" class="external" title="http://WikiEducator.org/WikiEducator.org/Public_Domain">Public Domain Dedication</a>.'
+		'PD' => 'Content has been released under a <a rel="license" href="http://WikiEducator.org/WikiEducator:Public_Domain" class="external" title="http://WikiEducator.org/WikiEducator.org/Public_Domain">Public Domain dedication</a>.'
 	);
 	$weCopyrightIcons = array(
 		'CC-BY' => '<a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img src="/skins/common/images/cc-by.png"></a>',
