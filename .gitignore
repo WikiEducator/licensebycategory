@@ -1,0 +1,8 @@
+*~
+.#*
+._*
+.*.sw?
+# OS debris
+.DS_Store
+# duelling version control systems
+.svn
