@@ -20,23 +20,29 @@ $wgExtensionCredits['parserhook'][] = array(
 );
 
 $wgHooks['OutputPageMakeCategoryLinks'][] = 'weCategoryLinks';
-$wgHooks['SkinTemplateOutputPageBeforeExec'][] = 'weMultiLicense';
+$wgHooks['SkinTemplateOutputPageBeforeExec'][] = 'weLicenseByCategory';
 $wgHooks['BeforePageDisplay'][] = 'weMultiLicenseHeader';
 
 function weCategoryLinks( &$out, $categories, &$links ) {
 	global $weLicense;
 	$weLicense = 'CC-BY-SA';
-	if ( array_key_exists( 'CC-BY', $categories ) ) {
-		$weLicense = 'CC-BY';
-	} elseif ( array_key_exists('CC0', $categories ) ) {
+	if ( array_key_exists('CC0', $categories ) ) {
 		$weLicense = 'CC0';
 	} elseif ( array_key_exists( 'Public_Domain', $categories ) ) {
 		$weLicense = 'PD';
+	} else {
+		foreach ( $categories as $cat => $v ) {
+			if ( preg_match( "/^cc-by((_pages)|(-[0-9.]+))?$/i",
+					$cat ) ) {
+				$weLicense = 'CC-BY';
+				break;
+			}
+		}
 	}
 	return true;
 }
 
-function weMultiLicense( &$templateEngine, &$template ) {
+function weLicenseByCategory ( &$templateEngine, &$template ) {
 	global $weLicense;
 	$weCopyrights = array(
 		'CC-BY' => 'Content is available under <a rel="license" href="http://creativecommons.org/licenses/by/3.0" class="external" title="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>.',
