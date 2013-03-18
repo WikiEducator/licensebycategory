@@ -12,6 +12,7 @@ if( !defined( 'MEDIAWIKI' ) ) {
 }
 
 $wgExtensionCredits['parserhook'][] = array(
+	'path'           => __FILE__,
 	'name'           => 'LicenseByCategory',
 	'version'        => '1.1',
 	'url'            => 'http://WikiEducator.org/Extension:LicenseByCategory',
@@ -21,7 +22,6 @@ $wgExtensionCredits['parserhook'][] = array(
 
 $wgHooks['OutputPageMakeCategoryLinks'][] = 'weCategoryLinks';
 $wgHooks['SkinTemplateOutputPageBeforeExec'][] = 'weLicenseByCategory';
-$wgHooks['BeforePageDisplay'][] = 'weMultiLicenseHeader';
 
 function weCategoryLinks( &$out, $categories, &$links ) {
 	global $weLicense;
@@ -42,7 +42,7 @@ function weCategoryLinks( &$out, $categories, &$links ) {
 	return true;
 }
 
-function weLicenseByCategory ( &$templateEngine, &$template ) {
+function weLicenseByCategory ( &$templateEngine, &$tpl ) {
 	global $weLicense;
 	$weCopyrights = array(
 		'CC-BY' => 'Content is available under <a rel="license" href="http://creativecommons.org/licenses/by/3.0" class="external" title="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>.',
@@ -50,31 +50,39 @@ function weLicenseByCategory ( &$templateEngine, &$template ) {
 		'PD' => 'Content has been released under a <a rel="license" href="http://WikiEducator.org/WikiEducator:Public_Domain" class="external" title="http://WikiEducator.org/WikiEducator.org/Public_Domain">Public Domain dedication</a>.'
 	);
 	$weCopyrightIcons = array(
-		'CC-BY' => '<a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img src="/skins/common/images/cc-by.png"></a>',
-		'CC0' => '<a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/"><img src="/skins/common/images/cc0.png"></a>',
-		'PD' => '<a rel="license" href="http://WikiEducator.org/WikiEducator:Public_Domain"><img src="/skins/common/images/pd.png"></a>'
+		'CC-BY' => array(
+			'url' => 'http://creativecommons.org/licenses/by/3.0/',
+			'src' => '/skins/common/images/cc-by.png',
+			'alt' => 'Creative Commons Attribution (CC-BY)',
+		),
+		'CC0' => array(
+			'url' => 'http://creativecommons.org/publicdomain/zero/1.0/',
+			'src' => '/skins/common/images/cc0.png',
+			'alt' => 'CC0 Public Domain Dedication',
+		),
+		'PD' => array(
+			'url' => 'http://WikiEducator.org/WikiEducator:Public_Domain',
+			'src' => '/skins/common/images/pd.png',
+			'alt' => 'Public Domain dedication',
+		),
 	);
-	if (array_key_exists($weLicense, $weCopyrights)) {
-		$template->set('copyright', $weCopyrights[$weLicense]);
-	}
-	if (array_key_exists($weLicense, $weCopyrightIcons)) {
-		$template->set('copyrightico', $weCopyrightIcons[$weLicense]);
-	}
-	return true;
-}
 
-function weMultiLicenseHeader( &$out, &$sk ) {
-	global $weLicense;
-	$weCopyrightURL = array(
-		'CC-BY' => 'http://creativecommons.org/licenses/by/3.0/',
-		'CC0' => 'http://creative.commons.org/publicdomain/zero/1.0/',
-		'PD' => 'http://creative.commons.org/publicdomain/zero/1.0/'
-	);
-	if (array_key_exists($weLicense, $weCopyrightURL)) {
-		$out->addLink( array(
-			'rel' => 'copyright',
-			'href' => $weCopyrightURL[$weLicense]
-		) );
+	if ( array_key_exists( $weLicense, $weCopyrights ) ) {
+		$tpl->set( 'copyright', $weCopyrights[$weLicense] );
 	}
+	# replace both the old and new forms of the copyright icon
+	if ( array_key_exists( $weLicense, $weCopyrightIcons ) ) {
+		$i = $weCopyrightIcons[$weLicense];
+		$tpl->set( 'copyrightico',
+		       "<a href=\"{$i['url']}\"><img src=\"{$i['src']}\" alt=\"{$i['alt']}\" /></a>" );
+		$fi = $tpl->data['footericons'];
+		$fi['copyright']['copyright'] = $weCopyrightIcons[$weLicense];
+		$tpl->setRef( 'footericons', $fi );
+	}
+	# replace the old copyright link from the head
+	$he = $tpl->data['headelement'];
+	$he = preg_replace( '/(<link rel="copyright" href=")[^"]+/',
+		'$1'.$weCopyrightIcons[$weLicense]['url'], $he );
+	$tpl->setRef( 'headelement', $he );
 	return true;
 }
