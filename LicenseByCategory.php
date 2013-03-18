@@ -13,7 +13,7 @@ if( !defined( 'MEDIAWIKI' ) ) {
 
 $wgExtensionCredits['parserhook'][] = array(
 	'name'           => 'LicenseByCategory',
-	'version'        => '1.0',
+	'version'        => '1.1',
 	'url'            => 'http://WikiEducator.org/Extension:LicenseByCategory',
 	'author'         => '[http://WikiEducator.org/User:JimTittsler Jim Tittsler]',
         'description'    => 'Change header(link) and footer license based on category',
@@ -26,7 +26,7 @@ $wgHooks['BeforePageDisplay'][] = 'weMultiLicenseHeader';
 function weCategoryLinks( &$out, $categories, &$links ) {
 	global $weLicense;
 	$weLicense = 'CC-BY-SA';
-	if ( array_key_exists('CC0', $categories ) ) {
+	if ( array_key_exists( 'CC0', $categories ) || array_key_exists( 'CC-0', $categories ) ) {
 		$weLicense = 'CC0';
 	} elseif ( array_key_exists( 'Public_Domain', $categories ) ) {
 		$weLicense = 'PD';
