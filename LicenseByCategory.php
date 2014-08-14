@@ -14,10 +14,11 @@ if( !defined( 'MEDIAWIKI' ) ) {
 $wgExtensionCredits['parserhook'][] = array(
 	'path'           => __FILE__,
 	'name'           => 'LicenseByCategory',
-	'version'        => '1.1.1',
+	'version'        => '1.1.2',
 	'url'            => 'http://WikiEducator.org/Extension:LicenseByCategory',
 	'author'         => '[http://WikiEducator.org/User:JimTittsler Jim Tittsler]',
-        'description'    => 'Change header(link) and footer license based on category',
+	'description'    => 'Change header(link) and footer license based on category',
+	'license'	 => 'GPL-2.0'
 );
 
 $wgHooks['OutputPageMakeCategoryLinks'][] = 'weCategoryLinks';
