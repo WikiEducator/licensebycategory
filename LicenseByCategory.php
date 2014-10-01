@@ -53,17 +53,17 @@ function weLicenseByCategory ( &$templateEngine, &$tpl ) {
 	$weCopyrightIcons = array(
 		'CC-BY' => array(
 			'url' => 'http://creativecommons.org/licenses/by/3.0/',
-			'src' => '/skins/common/images/cc-by.png',
+			'src' => '/extensions/LicenseByCategory/icons/cc-by.png',
 			'alt' => 'Creative Commons Attribution (CC-BY)',
 		),
 		'CC0' => array(
 			'url' => 'http://creativecommons.org/publicdomain/zero/1.0/',
-			'src' => '/skins/common/images/cc0.png',
+			'src' => '/extensions/LicenseByCategory/icons/cc0.png',
 			'alt' => 'CC0 Public Domain Dedication',
 		),
 		'PD' => array(
 			'url' => 'http://WikiEducator.org/WikiEducator:Public_Domain',
-			'src' => '/skins/common/images/pd.png',
+			'src' => '/extensions/LicenseByCategory/icons/pd.png',
 			'alt' => 'Public Domain dedication',
 		),
 	);
