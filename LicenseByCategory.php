@@ -14,7 +14,7 @@ if( !defined( 'MEDIAWIKI' ) ) {
 $wgExtensionCredits['parserhook'][] = array(
 	'path'           => __FILE__,
 	'name'           => 'LicenseByCategory',
-	'version'        => '1.1.2',
+	'version'        => '1.1.3',
 	'url'            => 'http://WikiEducator.org/Extension:LicenseByCategory',
 	'author'         => '[http://WikiEducator.org/User:JimTittsler Jim Tittsler]',
 	'description'    => 'Change header(link) and footer license based on category',
