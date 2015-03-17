@@ -1,0 +1,1 @@
+A [MediaWiki](http://mediawiki.org) extension that changes the header and footer of a page based on certain categories.
