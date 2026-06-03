@@ -68,7 +68,7 @@ function weLicenseByCategory ( &$templateEngine, &$tpl ) {
 		),
 	);
 
-	if ( array_key_exists( $weLicense, $weCopyrightIcons ) ) {
+	if ( isset( $weLicense ) && array_key_exists( $weLicense, $weCopyrightIcons ) ) {
 		$tpl->set( 'copyright', $weCopyrights[$weLicense] );
 
 		# replace both the old and new forms of the copyright icon
@@ -80,10 +80,12 @@ function weLicenseByCategory ( &$templateEngine, &$tpl ) {
 		$tpl->setRef( 'footericons', $fi );
 
 		# replace the old copyright link from the head
-		$he = $tpl->data['headelement'];
-		$he = preg_replace( '/(<link rel="copyright" href=")[^"]+/',
-			'$1'.$weCopyrightIcons[$weLicense]['url'], $he );
-		$tpl->setRef( 'headelement', $he );
+		if ( isset( $tpl->data['headelement'] ) ) {
+			$he = $tpl->data['headelement'];
+			$he = preg_replace( '/(<link rel="copyright" href=")[^"]+/',
+				'$1'.$weCopyrightIcons[$weLicense]['url'], $he );
+			$tpl->setRef( 'headelement', $he );
+		}
 	}
 	return true;
 }
