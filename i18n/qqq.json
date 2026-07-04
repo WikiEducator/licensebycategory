@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jim Tittsler"
+		]
+	},
+	"licensebycategory-copyright": "Footer copyright message substituted in place of {{msg-mw|Copyright}} when the page's category indicates a specific license (CC-BY, CC0, or public domain). $1 is the full HTML sentence describing that license, set by LicenseByCategoryHooks::onSkinCopyrightFooter."
+}
