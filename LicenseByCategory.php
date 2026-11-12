@@ -4,7 +4,7 @@
  * @package MediaWiki
  * @subpackage LicenseByCategory
  * @author Jim Tittsler <jim@OERfoundation.org>
- * @licence GPL2
+ * @license GPL-2.0-or-later
  */
 
 if( !defined( 'MEDIAWIKI' ) ) {
@@ -15,26 +15,26 @@ class LicenseByCategoryHooks {
 
 	private const LICENSE_ICONS = array(
 		'CC-BY' => array(
-			'url' => 'http://creativecommons.org/licenses/by/3.0/',
+			'url' => 'https://creativecommons.org/licenses/by/4.0/',
 			'src' => '/extensions/LicenseByCategory/icons/cc-by.png',
 			'alt' => 'Creative Commons Attribution (CC-BY)',
 		),
 		'CC0' => array(
-			'url' => 'http://creativecommons.org/publicdomain/zero/1.0/',
+			'url' => 'https://creativecommons.org/publicdomain/zero/1.0/',
 			'src' => '/extensions/LicenseByCategory/icons/cc0.png',
 			'alt' => 'CC0 Public Domain Dedication',
 		),
 		'PD' => array(
-			'url' => 'http://WikiEducator.org/WikiEducator:Public_Domain',
+			'url' => 'https://wikieducator.org/WikiEducator:Public_Domain',
 			'src' => '/extensions/LicenseByCategory/icons/pd.png',
 			'alt' => 'Public Domain dedication',
 		),
 	);
 
 	private const LICENSE_TEXT = array(
-		'CC-BY' => 'Content is available under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0" class="external" title="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>.',
-		'CC0' => 'Content is available under a <a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/" class="external" title="http://creativecommons.org/publicdomain/zero/1.0/">CC0 Public Domain Dedication</a>.',
-		'PD' => 'Content has been released under a <a rel="license" href="http://WikiEducator.org/WikiEducator:Public_Domain" class="external" title="http://WikiEducator.org/WikiEducator.org/Public_Domain">Public Domain dedication</a>.',
+		'CC-BY' => 'Content is available under the <a rel="license" href="https://creativecommons.org/licenses/by/4.0/" class="external" title="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</a>.',
+		'CC0' => 'Content is available under a <a rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/" class="external" title="https://creativecommons.org/publicdomain/zero/1.0/">CC0 Public Domain Dedication</a>.',
+		'PD' => 'Content has been released under a <a rel="license" href="https://wikieducator.org/WikiEducator:Public_Domain" class="external" title="https://wikieducator.org/WikiEducator:Public_Domain">Public Domain dedication</a>.',
 	);
 
 	public static function onOutputPageMakeCategoryLinks( $out, $categories, &$links ) {
